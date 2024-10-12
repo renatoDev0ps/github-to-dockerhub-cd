@@ -15,7 +15,7 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4 
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -42,5 +42,5 @@ jobs:
         with:
           push: true
           tags: |
-            jvictorsm/jvictorsm:python-${{ steps.cz.outputs.version }}
-            jvictorsm/jvictorsm:python-${{ steps.generate_tag.outputs.sha }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/docker-dockerhub:python-${{ steps.cz.outputs.version }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/docker-dockerhub:python-${{ steps.generate_tag.outputs.sha }}
