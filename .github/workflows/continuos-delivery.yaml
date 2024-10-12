@@ -64,7 +64,7 @@ jobs:
         eval `ssh-agent -s`
         ssh-add private.key 
         sshpass -p "${{ secrets.PSWD }}" ssh -v -i private.key -o StrictHostKeyChecking=no "${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}" <<'ENDSSH'
-        docker pull ${{ secrets.DOCKER_USERNAME }}/docker-dockerhub:${{ secrets.APPLICATION_NAME }}-${{ env.VERSIONS }}
+        docker pull ${{ secrets.DOCKER_USERNAME }}/docker-dockerhub:${{ vars.APPLICATION_NAME }}${{ env.VERSIONS }}
         ENDSSH
 
     - name: Stop and Remove Existing Container
@@ -72,28 +72,27 @@ jobs:
         eval `ssh-agent -s`
         ssh-add private.key 
         sshpass -p "${{ secrets.PSWD }}" ssh -v -i private.key -o StrictHostKeyChecking=no "${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}" \
-        "docker stop ${{ secrets.APPLICATION_NAME }} || true && docker rm ${{ secrets.APPLICATION_NAME }} || true"
+        "docker stop ${{ vars.APPLICATION_NAME }}|| true && docker rm ${{ vars.APPLICATION_NAME }}|| true"
 
     - name: Run Docker Container
       run: |
         eval `ssh-agent -s`
         ssh-add private.key 
         sshpass -p "${{ secrets.PSWD }}" ssh -v -i private.key -o StrictHostKeyChecking=no "${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}" \
-        docker run -d --name ${{ secrets.APPLICATION_NAME }} -p 3000:3000 ${{ secrets.DOCKER_USERNAME }}/docker-dockerhub:${{ secrets.APPLICATION_NAME }}-${{ env.VERSIONS }}
+        docker run -d --name ${{ vars.APPLICATION_NAME }}-p 3000:3000 ${{ secrets.DOCKER_USERNAME }}/docker-dockerhub:${{ vars.APPLICATION_NAME }}${{ env.VERSIONS }}
 
     - name: Verify Deployment
       run: |
         eval `ssh-agent -s`
         ssh-add private.key 
         sshpass -p "${{ secrets.PSWD }}" ssh -v -i private.key -o StrictHostKeyChecking=no "${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}" \
-        "docker ps | grep ${{ secrets.APPLICATION_NAME }}"
+        "docker ps | grep ${{ vars.APPLICATION_NAME }}
 
-    - name: Restart ${{ secrets.APPLICATION_NAME }}
-      run: |
+    - name: Restart ${{ vars.APPLICATION_NAME }}      run: |
         eval `ssh-agent -s`
         ssh-add private.key 
         sshpass -p "${{ secrets.PSWD }}" ssh -v -i private.key -o StrictHostKeyChecking=no "${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}" \
-        "docker exec ${{ secrets.APPLICATION_NAME }} service ${{ secrets.APPLICATION_NAME }} restart"
+        "docker exec ${{ vars.APPLICATION_NAME }}service ${{ vars.APPLICATION_NAME }}restart"
 
     - name: Clean Cache Images Orfans
       run: |
