@@ -1,3 +1,9 @@
+## 0.2.3 (2024-10-12)
+
+### Fix
+
+- :fire: change command script version
+
 ## 0.2.2 (2024-10-12)
 
 ### Fix
