@@ -1,3 +1,11 @@
+## 0.1.2 (2024-10-12)
+
+### Fix
+
+- teste
+- CI/CD workflows only run on develop branch
+- DockerHub login added to CD workflow
+
 ## 0.1.1 (2024-10-12)
 
 ### Fix
