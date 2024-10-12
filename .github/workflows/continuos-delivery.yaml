@@ -47,7 +47,7 @@ jobs:
     - name: Get Application VERSION
       id: app_version
       run: |
-        VERSIONS=$(jq -r '.version' "./.cz.toml")
+        VERSIONS=$(grep 'version' ".cz.toml" | sed -E 's/.*version *= *"(.*)"/\1/')
         echo "VERSIONS=$VERSIONS"
         echo "VERSIONS=$VERSIONS" >> $GITHUB_ENV
 
