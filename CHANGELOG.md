@@ -1,3 +1,9 @@
+## 0.2.10 (2024-10-12)
+
+### Fix
+
+- consertando a imagem do docker
+
 ## 0.2.9 (2024-10-12)
 
 ### Fix
