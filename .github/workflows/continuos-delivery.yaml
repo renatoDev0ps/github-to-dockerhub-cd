@@ -72,14 +72,14 @@ jobs:
         eval `ssh-agent -s`
         ssh-add private.key 
         sshpass -p "${{ secrets.PSWD }}" ssh -v -i private.key -o StrictHostKeyChecking=no "${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}" \
-        "docker stop ${{ vars.APPLICATION_NAME }}|| true && docker rm ${{ vars.APPLICATION_NAME }}|| true"
+        "docker stop ${{ vars.APPLICATION_NAME }} || true && docker rm ${{ vars.APPLICATION_NAME }} || true"
 
     - name: Run Docker Container
       run: |
         eval `ssh-agent -s`
         ssh-add private.key 
         sshpass -p "${{ secrets.PSWD }}" ssh -v -i private.key -o StrictHostKeyChecking=no "${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}" \
-        docker run -d --name ${{ vars.APPLICATION_NAME }}-p 3000:3000 ${{ secrets.DOCKERHUB_USERNAME }}/docker-dockerhub:python-${{ env.VERSIONS }}
+        docker run -d --name ${{ vars.APPLICATION_NAME }} -p 3000:3000 ${{ secrets.DOCKERHUB_USERNAME }}/docker-dockerhub:python-${{ env.VERSIONS }}
 
     - name: Verify Deployment
       run: |
