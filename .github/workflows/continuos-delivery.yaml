@@ -88,12 +88,12 @@ jobs:
         sshpass -p "${{ secrets.PSWD }}" ssh -v -i private.key -o StrictHostKeyChecking=no "${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}" \
         docker ps | grep ${{ vars.APPLICATION_NAME }}
 
-    - name: Restart ${{ vars.APPLICATION_NAME }}
-      run: |
-        eval `ssh-agent -s`
-        ssh-add private.key 
-        sshpass -p "${{ secrets.PSWD }}" ssh -v -i private.key -o StrictHostKeyChecking=no "${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}" \
-        docker exec ${{ vars.APPLICATION_NAME }} service ${{ vars.APPLICATION_NAME }} restart
+    # - name: Restart ${{ vars.APPLICATION_NAME }}
+    #   run: |
+    #     eval `ssh-agent -s`
+    #     ssh-add private.key 
+    #     sshpass -p "${{ secrets.PSWD }}" ssh -v -i private.key -o StrictHostKeyChecking=no "${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}" \
+    #     docker exec ${{ vars.APPLICATION_NAME }} service ${{ vars.APPLICATION_NAME }} restart
 
     - name: Clean Cache Images Orfans
       run: |
