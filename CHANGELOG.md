@@ -1,3 +1,9 @@
+## 0.2.1 (2024-10-12)
+
+### Fix
+
+- Rename CI workflows for clarity
+
 ## 0.2.0 (2024-10-12)
 
 ### Feat
