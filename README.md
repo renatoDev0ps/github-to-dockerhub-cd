@@ -12,7 +12,7 @@ cz init
     > "commitizen: Fetch and set version in commitizen config (default)"
     > Escolha a ultima TAG (Caso não tenha selecione a 0.0.0)
     > "semver"
-    > Is "v$version" the correct tag format? "N"
+    > Is "$version" the correct tag format? "Y"
     > Aperta "Enter"
     > "Create changelog automatically on bump "Y"
     > Keep major version zero (0.x) during breaking changes "N"
