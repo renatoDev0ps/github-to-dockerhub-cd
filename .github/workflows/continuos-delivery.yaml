@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   workflow_run:
     workflows: 
-      - (CI) Flask Release
+      - (CI) Pipeline
     types:
       - completed
   push:
@@ -47,7 +47,7 @@ jobs:
     - name: Get Application VERSION
       id: app_version
       run: |
-        VERSIONS=$(grep 'version' ".cz.toml" | sed -E 's/.*version *= *"(.*)"/\1/')
+        VERSIONS=$(grep "version" ".cz.toml" | sed -E 's/.*version *= *"([0-9]+\.[0-9]+\.[0-9]+)"/\1/' | tail -n 1)
         echo "VERSIONS=$VERSIONS"
         echo "VERSIONS=$VERSIONS" >> $GITHUB_ENV
 
