@@ -1,3 +1,9 @@
+## 0.2.0 (2024-10-12)
+
+### Feat
+
+- :rocket: create continuos integration
+
 ## 0.1.3 (2024-10-12)
 
 ### Fix
